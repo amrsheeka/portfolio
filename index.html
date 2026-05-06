@@ -1,869 +1,846 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amr Mostafa — Mobile Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ink: #0e0e0d;
-            --ink-muted: #3a3832;
-            --ink-dim: #7a756c;
-            --parchment: #f5f0e8;
-            --parchment-dark: #ede8dc;
-            --gold: #c9a84c;
-            --gold-light: #e8d5a3;
-            --gold-dim: #a07830;
-            --white: #fdfcf8;
-            --card-bg: #1a1915;
-            --card-border: #2e2c27;
-            --card-text: #e8e2d6;
-            --card-muted: #9a9488;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--parchment);
-            color: var(--ink);
-            overflow-x: hidden;
-        }
-
-        /* ---- NAV ---- */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 4rem;
-            background: rgba(245, 240, 232, 0.88);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-            transition: box-shadow 0.3s;
-        }
-
-        .nav-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            color: var(--ink);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 0.78rem;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--ink-muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover { color: var(--gold-dim); }
-
-        /* ---- HERO ---- */
-        .hero {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding-top: 70px;
-        }
-
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 6rem 4rem 6rem 6rem;
-        }
-
-        .hero-eyebrow {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.72rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3.5rem, 6vw, 6rem);
-            font-weight: 300;
-            line-height: 1.05;
-            color: var(--ink);
-            margin-bottom: 0.3rem;
-        }
-
-        .hero-name em {
-            font-style: italic;
-            color: var(--gold-dim);
-        }
-
-        .hero-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.1rem, 2vw, 1.6rem);
-            font-weight: 300;
-            font-style: italic;
-            color: var(--ink-dim);
-            margin-bottom: 2.5rem;
-        }
-
-        .gold-divider {
-            width: 40px;
-            height: 1px;
-            background: var(--gold);
-            margin: 0 0 2rem;
-        }
-
-        .hero-desc {
-            font-size: 0.95rem;
-            font-weight: 300;
-            line-height: 1.85;
-            color: var(--ink-muted);
-            max-width: 480px;
-            margin-bottom: 3rem;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1.2rem;
-            align-items: center;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            background: var(--ink);
-            color: var(--gold-light);
-            padding: 0.9rem 2rem;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.72rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: 1px solid var(--ink);
-            transition: all 0.3s;
-        }
-
-        .btn-primary:hover {
-            background: var(--gold-dim);
-            border-color: var(--gold-dim);
-            color: var(--white);
-        }
-
-        .btn-outline {
-            display: inline-flex;
-            align-items: center;
-            background: transparent;
-            color: var(--ink-muted);
-            padding: 0.9rem 2rem;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.72rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: 1px solid var(--ink-muted);
-            transition: all 0.3s;
-        }
-
-        .btn-outline:hover {
-            border-color: var(--gold);
-            color: var(--gold-dim);
-        }
-
-        .hero-right {
-            background: var(--ink);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-right::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 30% 60%, rgba(201,168,76,0.12) 0%, transparent 65%);
-        }
-
-        .hero-right::after {
-            content: 'AMK';
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20vw;
-            font-weight: 300;
-            color: rgba(255,255,255,0.03);
-            position: absolute;
-            letter-spacing: -0.05em;
-            pointer-events: none;
-        }
-
-        .hero-photo-wrap {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .hero-photo {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--gold-dim);
-            filter: grayscale(20%);
-        }
-
-        .hero-photo-label {
-            margin-top: 1.5rem;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.68rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--card-muted);
-        }
-
-        .hero-stats {
-            position: absolute;
-            bottom: 3rem;
-            left: 0; right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            z-index: 2;
-        }
-
-        .stat-item { text-align: center; }
-
-        .stat-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            font-weight: 300;
-            color: var(--gold-light);
-        }
-
-        .stat-label {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.62rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--card-muted);
-            margin-top: 0.2rem;
-        }
-
-        /* ---- SECTIONS ---- */
-        section { padding: 7rem 6rem; }
-
-        .section-header {
-            display: flex;
-            align-items: baseline;
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .section-num {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.72rem;
-            color: var(--gold);
-            letter-spacing: 0.1em;
-        }
-
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            font-weight: 300;
-            color: var(--ink);
-        }
-
-        .section-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--gold-light), transparent);
-        }
-
-        /* ---- SKILLS ---- */
-        #skills { background: var(--parchment-dark); }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5px;
-            background: var(--gold-light);
-        }
-
-        .skill-category {
-            background: var(--parchment-dark);
-            padding: 2.5rem;
-        }
-
-        .skill-cat-title {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.68rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gold-dim);
-            margin-bottom: 2rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .skill-tag {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 0.95rem;
-            font-weight: 300;
-            color: var(--ink-muted);
-        }
-
-        .skill-tag::before {
-            content: '';
-            width: 5px;
-            height: 5px;
-            background: var(--gold);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        /* ---- PROJECTS ---- */
-        #projects { background: var(--ink); }
-
-        #projects .section-title { color: var(--card-text); }
-        #projects .section-num { color: var(--gold); }
-        #projects .section-line { background: linear-gradient(90deg, rgba(201,168,76,0.3), transparent); }
-
-        .project-item {
-            display: grid;
-            grid-template-columns: 80px 1fr auto;
-            align-items: center;
-            gap: 2.5rem;
-            padding: 2.5rem 0;
-            border-bottom: 1px solid var(--card-border);
-            transition: all 0.3s;
-        }
-
-        .project-item:first-child { border-top: 1px solid var(--card-border); }
-        .project-item:hover .project-title { color: var(--gold-light); }
-        .project-item:hover .project-link { opacity: 1; }
-
-        .project-year {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.72rem;
-            color: var(--card-muted);
-            letter-spacing: 0.1em;
-        }
-
-        .project-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
-            font-weight: 400;
-            color: var(--card-text);
-            margin-bottom: 0.4rem;
-            transition: color 0.3s;
-        }
-
-        .project-desc {
-            font-size: 0.85rem;
-            font-weight: 300;
-            color: var(--card-muted);
-            line-height: 1.6;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 0.8rem;
-            flex-wrap: wrap;
-        }
-
-        .project-tag {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.62rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--gold-dim);
-            border: 1px solid rgba(201,168,76,0.3);
-            padding: 0.2rem 0.6rem;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--gold);
-            text-decoration: none;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.68rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            opacity: 0.45;
-            transition: opacity 0.3s;
-            white-space: nowrap;
-        }
-
-        .project-link::after { content: ' ↗'; }
-
-        /* ---- CONTACT ---- */
-        #contact { background: var(--parchment); }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-        }
-
-        .contact-intro {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.45rem;
-            font-weight: 300;
-            font-style: italic;
-            color: var(--ink-muted);
-            line-height: 1.7;
-            margin-bottom: 3rem;
-        }
-
-        .contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
-
-        .contact-detail { display: flex; gap: 1rem; align-items: flex-start; }
-
-        .contact-detail-label {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gold-dim);
-            min-width: 65px;
-            padding-top: 2px;
-        }
-
-        .contact-detail-value { font-size: 0.9rem; font-weight: 300; color: var(--ink-muted); }
-
-        .contact-detail-value a {
-            color: var(--ink-muted);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s, color 0.2s;
-        }
-
-        .contact-detail-value a:hover {
-            color: var(--gold-dim);
-            border-bottom-color: var(--gold-light);
-        }
-
-        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
-
-        .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-
-        .form-label {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gold-dim);
-        }
-
-        .form-input, .form-select, .form-textarea {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #d8d0c0;
-            padding: 0.7rem 0;
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 300;
-            color: var(--ink);
-            outline: none;
-            transition: border-color 0.3s;
-            width: 100%;
-        }
-
-        .form-input::placeholder,
-        .form-textarea::placeholder { color: var(--ink-dim); }
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus { border-bottom-color: var(--gold); }
-
-        .form-select { cursor: pointer; -webkit-appearance: none; }
-        .form-textarea { resize: none; }
-
-        .form-submit {
-            align-self: flex-start;
-            background: var(--ink);
-            color: var(--gold-light);
-            padding: 0.9rem 2.5rem;
-            border: 1px solid var(--ink);
-            font-family: 'DM Mono', monospace;
-            font-size: 0.72rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 0.5rem;
-        }
-
-        .form-submit:hover {
-            background: var(--gold-dim);
-            border-color: var(--gold-dim);
-            color: var(--white);
-        }
-
-        /* ---- FOOTER ---- */
-        footer {
-            background: var(--ink);
-            padding: 3rem 6rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            font-weight: 300;
-            color: var(--gold-light);
-            margin-bottom: 0.3rem;
-        }
-
-        .footer-copy {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            color: var(--card-muted);
-        }
-
-        .footer-links { display: flex; gap: 2rem; }
-
-        .footer-links a {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--card-muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover { color: var(--gold); }
-
-        /* ---- ANIMATIONS ---- */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-        /* ---- RESPONSIVE ---- */
-        @media (max-width: 900px) {
-            nav { padding: 1rem 1.5rem; }
-            .nav-links { gap: 1.2rem; }
-            .hero { grid-template-columns: 1fr; }
-            .hero-right { min-height: 50vh; order: -1; }
-            .hero-left { padding: 4rem 2rem; }
-            section { padding: 5rem 1.5rem; }
-            .skills-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-            footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem; }
-            .project-item { grid-template-columns: 1fr; gap: 0.8rem; }
-            .project-year { display: none; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amr Mostafa — Mobile Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface2: #16161f;
+      --accent: #00e5a0;
+      --accent2: #6c63ff;
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+      --border: rgba(255,255,255,0.07);
+      --glow: rgba(0, 229, 160, 0.15);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.5;
+    }
+
+    /* ── AMBIENT BLOBS ── */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,229,160,0.12), transparent 70%);
+      top: -100px; left: -100px;
+      animation: drift1 14s ease-in-out infinite alternate;
+    }
+    .blob-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(108,99,255,0.1), transparent 70%);
+      bottom: 100px; right: -80px;
+      animation: drift2 18s ease-in-out infinite alternate;
+    }
+    @keyframes drift1 { to { transform: translate(60px, 80px); } }
+    @keyframes drift2 { to { transform: translate(-60px, -60px); } }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      padding: 8rem 2rem 4rem;
+    }
+    .hero-inner {
+      text-align: center;
+      animation: fadeUp 0.8s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .hero-label::before, .hero-label::after {
+      content: '';
+      display: block;
+      width: 40px; height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 9rem);
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-top: 1.5rem;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+    .hero-avatar {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 30px var(--glow);
+      object-fit: cover;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-cta {
+      display: inline-flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .btn {
+      padding: 0.75rem 2rem;
+      border-radius: 3px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      font-weight: 500;
+    }
+    .btn-primary:hover {
+      background: #fff;
+      box-shadow: 0 0 24px var(--glow);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 0.05em;
+      color: var(--text);
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .stat-box {
+      background: var(--surface);
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .skill-card:hover { border-color: rgba(0,229,160,0.3); transform: translateY(-4px); }
+    .skill-card:hover::before { transform: scaleX(1); }
+    .skill-card-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      display: inline-block;
+      padding: 0.35rem 0.8rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      font-size: 0.8rem;
+      color: var(--text);
+      font-weight: 300;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-list { display: flex; flex-direction: column; gap: 0; }
+    .project-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      transition: background 0.2s;
+      border-radius: 4px;
+      padding-left: 0.5rem;
+    }
+    .project-item:first-child { border-top: 1px solid var(--border); }
+    .project-item:hover { background: rgba(255,255,255,0.02); }
+    .project-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .project-info { }
+    .project-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      transition: color 0.3s;
+    }
+    .project-item:hover .project-name { color: var(--accent); }
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .project-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.4rem;
+    }
+    .project-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border: 1px solid rgba(108,99,255,0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+    .project-arrow {
+      font-size: 1.2rem;
+      color: var(--muted);
+      transition: color 0.3s, transform 0.3s;
+      margin-left: 0.5rem;
+    }
+    .project-item:hover .project-arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-info p {
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .contact-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .contact-key {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      width: 50px;
+      flex-shrink: 0;
+    }
+    .contact-val {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 300;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+    .form-control {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.85rem 1rem;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      outline: none;
+    }
+    .form-control:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--glow);
+    }
+    .form-control::placeholder { color: var(--muted); }
+    select.form-control option { background: var(--surface2); }
+    textarea.form-control { resize: vertical; min-height: 120px; }
+    .btn-submit {
+      background: var(--accent);
+      color: #000;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 3px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s;
+      align-self: flex-start;
+    }
+    .btn-submit:hover {
+      background: #fff;
+      box-shadow: 0 0 24px var(--glow);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── SECTION DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .project-item { grid-template-columns: 60px 1fr; }
+      .project-stack { display: none; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+
+    /* ── ENTRANCE ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+  </style>
 </head>
 <body>
 
-    <nav id="top-nav">
-        <a class="nav-logo" href="#top">Amr M. Khamis</a>
-        <ul class="nav-links">
-            <li><a href="#about-section">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
-    <!-- HERO -->
-    <div class="hero" id="top">
-        <div class="hero-left">
-            <p class="hero-eyebrow">Mobile Developer · Cairo, Egypt</p>
-            <h1 class="hero-name">Amr<br><em>Mostafa</em></h1>
-            <p class="hero-title">Flutter & React Native Engineer</p>
-            <div class="gold-divider"></div>
-            <p class="hero-desc">Fresh graduate from Cairo University specializing in cross-platform mobile development. Passionate about crafting intuitive digital experiences — from e-commerce platforms to healthcare applications.</p>
-            <div class="hero-cta">
-                <a href="#projects" class="btn-primary">View Work</a>
-                <a href="#contact" class="btn-outline">Get in Touch</a>
-            </div>
-        </div>
-        <div class="hero-right">
-            <div class="hero-photo-wrap">
-                <img class="hero-photo" src="https://avatars.githubusercontent.com/u/96008085?v=4" alt="Amr Mostafa Khamis">
-                <p class="hero-photo-label">B.Sc. Computer Science · 2023</p>
-            </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-num">5</div>
-                    <div class="stat-label">Projects</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num">4+</div>
-                    <div class="stat-label">Years Study</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num">2</div>
-                    <div class="stat-label">Platforms</div>
-                </div>
-            </div>
-        </div>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">AMK</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-inner">
+      <img class="hero-avatar" src="https://avatars.githubusercontent.com/u/96008085?v=4" alt="Amr Mostafa Khamis"/>
+      <div class="hero-label">Mobile Developer</div>
+      <h1 class="hero-name">Amr<br/><span>Mostafa</span></h1>
+      <p class="hero-tagline">Flutter · React Native · Firebase · Dart</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
     </div>
+    <div class="scroll-hint">Scroll</div>
+  </section>
 
-    <!-- ABOUT -->
-    <section id="about-section">
-        <div class="section-header fade-up">
-            <span class="section-num">01</span>
-            <h2 class="section-title">About</h2>
-            <div class="section-line"></div>
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <div class="section" id="about">
+    <div class="section-header fade-in">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-in delay-1">
+        <p>I'm a <strong>fresh Computer Science graduate</strong> from Cairo University (2019–2023) with a strong focus on mobile application development.</p>
+        <p>I specialize in building polished, high-performance apps using <strong>Flutter</strong> and <strong>React Native</strong>, with hands-on experience integrating <strong>Firebase</strong>, payment gateways, REST APIs, and complex state management patterns.</p>
+        <p>I'm passionate about clean code, great UX, and turning ideas into products that actually ship.</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:0.5rem; display:inline-block;">Hire Me →</a>
+      </div>
+      <div class="about-stats fade-in delay-2">
+        <div class="stat-box">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Projects Shipped</div>
         </div>
-        <div style="max-width: 680px;" class="fade-up">
-            <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 300; font-style: italic; line-height: 1.7; color: var(--ink-muted); margin-bottom: 2rem;">
-                I believe great mobile apps are invisible — they simply get out of the way and let people do what they love.
-            </p>
-            <p style="font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: var(--ink-muted); margin-bottom: 1.2rem;">
-                I graduated from Cairo University in 2023 with a Computer Science degree. During my studies, I developed a deep focus on mobile development — particularly how Flutter and React Native enable writing once and deploying everywhere.
-            </p>
-            <p style="font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: var(--ink-muted);">
-                My work spans e-commerce apps, news readers, healthcare platforms, and game development — giving me a versatile perspective on building for real users with real needs.
-            </p>
+        <div class="stat-box">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Years Coding</div>
         </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-        <div class="section-header fade-up">
-            <span class="section-num">02</span>
-            <h2 class="section-title">Skills</h2>
-            <div class="section-line"></div>
+        <div class="stat-box">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Frameworks</div>
         </div>
-        <div class="skills-grid fade-up">
-            <div class="skill-category">
-                <p class="skill-cat-title">Languages</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Dart</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">PHP</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <p class="skill-cat-title">Frameworks & Libraries</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Flutter</span>
-                    <span class="skill-tag">React Native</span>
-                    <span class="skill-tag">Bloc State Management</span>
-                    <span class="skill-tag">Dio (REST)</span>
-                    <span class="skill-tag">OpenGL</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <p class="skill-cat-title">Tools & Platforms</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Firebase</span>
-                    <span class="skill-tag">Cloud Firestore</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">Git & GitHub</span>
-                    <span class="skill-tag">Stripe Payments</span>
-                </div>
-            </div>
+        <div class="stat-box">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Ideas Left</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-        <div class="section-header fade-up">
-            <span class="section-num">03</span>
-            <h2 class="section-title">Projects</h2>
-            <div class="section-line"></div>
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <div class="section" id="skills">
+    <div class="section-header fade-in">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card fade-in delay-1">
+        <div class="skill-card-title">Languages</div>
+        <div class="skill-tags">
+          <span class="tag">Dart</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Java</span>
+          <span class="tag">C++</span>
         </div>
-        <div>
-            <div class="project-item fade-up">
-                <span class="project-year">2023</span>
-                <div>
-                    <h3 class="project-title">Doctor Now</h3>
-                    <p class="project-desc">Graduation project — a healthcare app enabling doctor-patient communication & appointment management.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">React Native</span>
-                        <span class="project-tag">PHP</span>
-                        <span class="project-tag">MySQL</span>
-                        <span class="project-tag">Firebase</span>
-                    </div>
-                </div>
-                <a href="https://github.com/amrsheeka/Doctor_Now" target="_blank" class="project-link">View Code</a>
-            </div>
-
-            <div class="project-item fade-up">
-                <span class="project-year">2023</span>
-                <div>
-                    <h3 class="project-title">Furniture Store</h3>
-                    <p class="project-desc">Full-featured e-commerce app with Stripe payment integration, cloud sync and real-time inventory.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Flutter</span>
-                        <span class="project-tag">Bloc</span>
-                        <span class="project-tag">Firestore</span>
-                        <span class="project-tag">Stripe</span>
-                    </div>
-                </div>
-                <a href="https://github.com/amrsheeka/FurnitureStoreFlutter" target="_blank" class="project-link">View Code</a>
-            </div>
-
-            <div class="project-item fade-up">
-                <span class="project-year">2022</span>
-                <div>
-                    <h3 class="project-title">News App</h3>
-                    <p class="project-desc">Fetches and displays live news articles via REST API with clean category filtering and reading UX.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Flutter</span>
-                        <span class="project-tag">Bloc</span>
-                        <span class="project-tag">Dio</span>
-                    </div>
-                </div>
-                <a href="https://github.com/amrsheeka/news_app" target="_blank" class="project-link">View Code</a>
-            </div>
-
-            <div class="project-item fade-up">
-                <span class="project-year">2022</span>
-                <div>
-                    <h3 class="project-title">Furniture Store (RN)</h3>
-                    <p class="project-desc">React Native version with Firebase-backed product management and user authentication.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">React Native</span>
-                        <span class="project-tag">JavaScript</span>
-                        <span class="project-tag">Firebase</span>
-                    </div>
-                </div>
-                <a href="https://github.com/Sasatayea/store" target="_blank" class="project-link">View Code</a>
-            </div>
-
-            <div class="project-item fade-up">
-                <span class="project-year">2021</span>
-                <div>
-                    <h3 class="project-title">Rabbit Game</h3>
-                    <p class="project-desc">A 2D game built with OpenGL and Java, demonstrating graphics programming and game-loop concepts.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Java</span>
-                        <span class="project-tag">OpenGL</span>
-                    </div>
-                </div>
-                <a href="https://github.com/amrsheeka/rabbitg" target="_blank" class="project-link">View Code</a>
-            </div>
+      </div>
+      <div class="skill-card fade-in delay-2">
+        <div class="skill-card-title">Frameworks</div>
+        <div class="skill-tags">
+          <span class="tag">Flutter</span>
+          <span class="tag">React Native</span>
+          <span class="tag">PHP</span>
         </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="section-header fade-up">
-            <span class="section-num">04</span>
-            <h2 class="section-title">Contact</h2>
-            <div class="section-line"></div>
+      </div>
+      <div class="skill-card fade-in delay-3">
+        <div class="skill-card-title">Tools & Services</div>
+        <div class="skill-tags">
+          <span class="tag">Firebase</span>
+          <span class="tag">Cloud Firestore</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Dio</span>
+          <span class="tag">Git & GitHub</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">Stripe</span>
         </div>
-        <div class="contact-grid">
-            <div class="fade-up">
-                <p class="contact-intro">"Open to opportunities, collaborations, and conversations about building great mobile experiences."</p>
-                <div class="contact-details">
-                    <div class="contact-detail">
-                        <span class="contact-detail-label">Email</span>
-                        <span class="contact-detail-value"><a href="mailto:mostamr26@gmail.com">mostamr26@gmail.com</a></span>
-                    </div>
-                    <div class="contact-detail">
-                        <span class="contact-detail-label">Phone</span>
-                        <span class="contact-detail-value">01140940686</span>
-                    </div>
-                    <div class="contact-detail">
-                        <span class="contact-detail-label">Location</span>
-                        <span class="contact-detail-value">Helwan, Cairo, Egypt</span>
-                    </div>
-                    <div class="contact-detail">
-                        <span class="contact-detail-label">LinkedIn</span>
-                        <span class="contact-detail-value"><a href="https://www.linkedin.com/in/amr-mostafa-b4666b37b/" target="_blank">amr-mostafa-b4666b37b</a></span>
-                    </div>
-                    <div class="contact-detail">
-                        <span class="contact-detail-label">Languages</span>
-                        <span class="contact-detail-value">Arabic (Native) · English (Very Good)</span>
-                    </div>
-                </div>
-            </div>
-            <form class="contact-form fade-up" onsubmit="return false;">
-                <div class="form-group">
-                    <label class="form-label" for="name">Name</label>
-                    <input class="form-input" type="text" id="name" placeholder="Your full name" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="email">Email</label>
-                    <input class="form-input" type="email" id="email" placeholder="your@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="inquiry">Inquiry Type</label>
-                    <select class="form-select" id="inquiry">
-                        <option value="">— Select —</option>
-                        <option value="hire">Hire</option>
-                        <option value="general">General</option>
-                        <option value="feedback">Feedback</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="message">Message</label>
-                    <textarea class="form-textarea" id="message" rows="5" placeholder="What's on your mind?" required></textarea>
-                </div>
-                <button class="form-submit" type="submit">Send Message</button>
-            </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <div class="section" id="projects">
+    <div class="section-header fade-in">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-list">
+
+      <a class="project-item fade-in delay-1" href="https://github.com/amrsheeka/Doctor_Now" target="_blank">
+        <span class="project-year">2023</span>
+        <div class="project-info">
+          <div class="project-name">Doctor Now <span class="project-arrow">→</span></div>
+          <div class="project-desc">Graduation project — healthcare platform for doctor-patient communication & appointment management.</div>
         </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div>
-            <p class="footer-name">Amr Mostafa Khamis</p>
-            <p class="footer-copy">© 2026 · All rights reserved</p>
+        <div class="project-stack">
+          <span class="project-badge">React Native</span>
+          <span class="project-badge">PHP + MySQL</span>
         </div>
-        <div class="footer-links">
-            <a href="https://github.com/amrsheeka" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/amr-mostafa-b4666b37b/" target="_blank">LinkedIn</a>
-            <a href="mailto:mostamr26@gmail.com">Email</a>
+      </a>
+
+      <a class="project-item fade-in delay-2" href="https://github.com/amrsheeka/FurnitureStoreFlutter" target="_blank">
+        <span class="project-year">2023</span>
+        <div class="project-info">
+          <div class="project-name">Furniture Store (Flutter) <span class="project-arrow">→</span></div>
+          <div class="project-desc">Full e-commerce app with Bloc state management, Firestore, and Stripe payment integration.</div>
         </div>
-    </footer>
+        <div class="project-stack">
+          <span class="project-badge">Flutter</span>
+          <span class="project-badge">Stripe</span>
+        </div>
+      </a>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+      <a class="project-item fade-in delay-3" href="https://github.com/amrsheeka/news_app" target="_blank">
+        <span class="project-year">2022</span>
+        <div class="project-info">
+          <div class="project-name">News App <span class="project-arrow">→</span></div>
+          <div class="project-desc">Flutter news reader powered by REST APIs and Bloc for clean state handling.</div>
+        </div>
+        <div class="project-stack">
+          <span class="project-badge">Flutter</span>
+          <span class="project-badge">REST API</span>
+        </div>
+      </a>
 
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+      <a class="project-item fade-in delay-4" href="https://github.com/Sasatayea/store" target="_blank">
+        <span class="project-year">2022</span>
+        <div class="project-info">
+          <div class="project-name">Furniture Store (RN) <span class="project-arrow">→</span></div>
+          <div class="project-desc">React Native furniture app with Firebase authentication and product management.</div>
+        </div>
+        <div class="project-stack">
+          <span class="project-badge">React Native</span>
+          <span class="project-badge">Firebase</span>
+        </div>
+      </a>
 
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('top-nav');
-            nav.style.boxShadow = window.scrollY > 40 ? '0 4px 30px rgba(0,0,0,0.08)' : 'none';
-        });
-    </script>
+      <a class="project-item fade-in delay-5" href="https://github.com/amrsheeka/rabbitg" target="_blank">
+        <span class="project-year">2021</span>
+        <div class="project-info">
+          <div class="project-name">Rabbit Game <span class="project-arrow">→</span></div>
+          <div class="project-desc">2D game built with OpenGL and Java demonstrating core game-dev concepts.</div>
+        </div>
+        <div class="project-stack">
+          <span class="project-badge">Java</span>
+          <span class="project-badge">OpenGL</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <div class="section" id="contact">
+    <div class="section-header fade-in">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-in delay-1">
+        <p>Open to full-time roles, freelance projects, and interesting collaborations. Reach out and let's build something.</p>
+        <div class="contact-details">
+          <div class="contact-row">
+            <span class="contact-key">Email</span>
+            <span class="contact-val">mostamr26@gmail.com</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">Phone</span>
+            <span class="contact-val">01140940686</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">City</span>
+            <span class="contact-val">Helwan, Cairo, Egypt</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">Link</span>
+            <a class="contact-val" href="https://www.linkedin.com/in/amr-mostafa-b4666b37b/" target="_blank" style="color:var(--accent); text-decoration:none;">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form fade-in delay-2">
+        <div class="form-group">
+          <label class="form-label" for="name">Name</label>
+          <input class="form-control" type="text" id="name" name="name" placeholder="Your name" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-control" type="email" id="email" name="email" placeholder="your@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inquiry">Inquiry Type</label>
+          <select class="form-control" id="inquiry" name="inquiry" required>
+            <option value="">Select…</option>
+            <option value="hire">Hire</option>
+            <option value="general">General</option>
+            <option value="feedback">Feedback</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-control" id="message" name="message" placeholder="Tell me about your project…" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">© 2026 Amr Mostafa Khamis — All rights reserved.</span>
+    <div class="footer-links">
+      <a href="https://github.com/amrsheeka" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/amr-mostafa-b4666b37b/" target="_blank">LinkedIn</a>
+      <a href="mailto:mostamr26@gmail.com">Email</a>
+    </div>
+  </footer>
+
 </body>
 </html>
