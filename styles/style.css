@@ -688,7 +688,7 @@
     .project-feature-cover {
       display: block;
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 4.7 / 5;
       object-fit: cover;
       background: #05060a;
       filter: saturate(1.05) contrast(1.03);
