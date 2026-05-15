@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amr Mostafa | Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link href="./styles/style.css" rel="stylesheet" />
+</head>
+
+<body class="project-route">
+  <div class="spotlight" aria-hidden="true"></div>
+  <div class="backdrop-lines" aria-hidden="true"></div>
+
+  <nav aria-label="Primary navigation">
+    <a class="nav-logo" href="index.html" aria-label="Amr Mostafa home">AM</a>
+    <ul class="nav-links">
+      <li><a href="index.html#projects">Portfolio</a></li>
+      <li><a href="preview.html">Materials</a></li>
+      <li><a href="#shots">Screens</a></li>
+    </ul>
+  </nav>
+
+  <main class="project-page">
+    <section class="project-shell">
+      <div class="project-hero">
+        <div>
+          <div class="eyebrow reveal">Single project screen</div>
+          <h1 class="hero-title project-page-title reveal" id="projectTitle" style="--delay: 90ms">Loading project</h1>
+          <p class="hero-copy project-page-copy reveal" id="projectCopy" style="--delay: 180ms"></p>
+          <div class="hero-tags reveal" id="projectTags" style="--delay: 260ms" aria-label="Project tags"></div>
+          <div class="project-switcher reveal" style="--delay: 340ms" id="projectSwitcher"></div>
+          <div class="hero-actions reveal" style="--delay: 420ms">
+            <a href="index.html#projects" class="btn btn-primary">Back to Portfolio <span aria-hidden="true">-></span></a>
+            <a href="preview.html" class="btn btn-ghost">Materials Hub</a>
+          </div>
+        </div>
+
+        <aside class="project-card reveal" style="--delay: 220ms" aria-label="Project cover and summary">
+          <img class="project-card-cover" id="projectCover" src="" alt="" />
+          <div class="project-card-body">
+            <div>
+              <span class="overview-kicker" id="projectKicker"></span>
+              <h2 class="overview-title" id="projectSubtitle"></h2>
+              <p class="overview-copy" id="projectSummary"></p>
+            </div>
+            <div class="project-card-meta" id="projectStats"></div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="section project-media-section" id="demo">
+        <div class="section-header reveal">
+          <span class="section-num">00</span>
+          <h2 class="section-title">Demo Video</h2>
+          <div class="section-line"></div>
+        </div>
+        <article class="project-video-panel reveal" id="projectVideoPanel">
+          <video class="project-video" id="projectVideo" controls muted loop playsinline preload="metadata"></video>
+        </article>
+      </section>
+
+      <section class="section" id="shots">
+        <div class="section-header reveal">
+          <span class="section-num">01</span>
+          <h2 class="section-title">Screenshots</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="project-gallery" id="projectGallery" aria-label="Project screenshot gallery"></div>
+      </section>
+    </section>
+  </main>
+
+  <dialog class="lightbox" id="lightbox">
+    <div class="lightbox-panel">
+      <button class="lightbox-close" type="button" aria-label="Close preview">×</button>
+      <img class="lightbox-image" id="lightboxImage" src="" alt="" />
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </dialog>
+
+  <script>
+    const projects = {
+      "doctor-now": {
+        title: "Doctor Now",
+        kicker: "React Native Telemedicine",
+        subtitle: "Health platform and mobile experience",
+        summary: "Doctor Now is a healthcare app that connects patients with doctors through focused mobile flows, authentication, and appointment management.",
+        cover: "assets/doctor-now/cover.png",
+        copy: "A graduation project built with React Native, Firebase, PHP APIs, and MySQL. This route is centered on the cover image and the full screenshot gallery so the work can be reviewed quickly.",
+        tags: ["React Native", "Firebase", "PHP + MySQL", "Appointments", "Healthcare UX"],
+        stats: [
+          { value: "13", label: "Screenshots" },
+          { value: "2023", label: "Graduation year" }
+        ],
+        screenshots: [
+          "assets/doctor-now/img/doctor-now-home-doctors-and-confirmation-collage.png",
+          "assets/doctor-now/img/doctor-now-auth-and-home-collage.png",
+          "assets/doctor-now/img/doctor-now-doctor-browse-and-chat-collage.png",
+          "assets/doctor-now/img/doctor-now-home-appointment-map-collage.png",
+          "assets/doctor-now/img/doctor-now-admin-login-dashboard-and-add-doctor-collage.png",
+          "assets/doctor-now/img/doctor-now-doctor-profile-and-clinic-details-collage.png",
+          "assets/doctor-now/img/doctor-now-clinic-address-map-collage.png",
+          "assets/doctor-now/img/doctor-now-profile-and-settings-collage.png",
+          "assets/doctor-now/img/doctor-now-appointments-history-and-report-search-collage.png",
+          "assets/doctor-now/img/doctor-now-profile-and-comments-collage.png",
+          "assets/doctor-now/img/doctor-now-admin-login-and-doctor-management-collage.png",
+          "assets/doctor-now/img/doctor-now-chat-conversation-collage.png",
+          "assets/doctor-now/img/doctor-now-comments-and-reviews-collage.png"
+        ],
+        screenDescriptions: [
+          "Patient home flow showing doctor discovery and appointment confirmation in one overview.",
+          "Authentication and home screens showing how patients enter the app and reach the main experience.",
+          "Doctor browsing and chat flow for finding a doctor and starting a consultation.",
+          "Appointment and map screens showing booking context with location support.",
+          "Admin dashboard flow for signing in and adding doctor records.",
+          "Doctor profile and clinic details screens for reviewing doctor information before booking.",
+          "Clinic address map screen showing location details for the selected clinic.",
+          "Profile and settings screens for managing patient account preferences.",
+          "Appointments history and report search screens for reviewing previous medical activity.",
+          "Profile and comments screens showing user information alongside feedback.",
+          "Admin doctor management flow for reviewing and controlling doctor records.",
+          "Chat conversation screen showing the patient-doctor messaging experience.",
+          "Comments and reviews screens for reading patient feedback and ratings."
+        ]
+      },
+      "nexus-app": {
+        title: "Nexus App",
+        kicker: "Flutter Furniture Store",
+        subtitle: "Shopping flow and product showcase",
+        summary: "Nexus App is the Flutter furniture storefront with polished shopping flows, clean visuals, and a rich screen set.",
+        cover: "assets/nexus-app/cover.png",
+        video: "assets/nexus-app/furniture.webm",
+        copy: "Built with Flutter, Bloc, Firestore, and Stripe, this route replaces the video-first view with a cover-led gallery that makes the screenshots easier to browse.",
+        tags: ["Flutter", "Bloc", "Firestore", "Stripe", "E-commerce"],
+        stats: [
+          { value: "11", label: "Screenshots" },
+          { value: "2023", label: "Project year" }
+        ],
+        screenshots: [
+          "assets/nexus-app/img/nexus-login-screen.jpg",
+          "assets/nexus-app/img/nexus-register-screen.jpg",
+          "assets/nexus-app/img/nexus-home-screen.jpg",
+          "assets/nexus-app/img/nexus-favorites-screen.jpg",
+          "assets/nexus-app/img/nexus-profile-screen.jpg",
+          "assets/nexus-app/img/nexus-search-screen.jpg",
+          "assets/nexus-app/img/nexus-product-details-screen.jpg",
+          "assets/nexus-app/img/nexus-rating-modal-screen.jpg",
+          "assets/nexus-app/img/nexus-product-details-expanded-screen.jpg",
+          "assets/nexus-app/img/nexus-cart-screen.jpg",
+          "assets/nexus-app/img/nexus-cart-summary-screen.jpg"
+        ],
+        screenDescriptions: [
+          "Login screen with a focused email and password flow that introduces the furniture store experience.",
+          "Registration screen for creating a new Nexus customer account before shopping.",
+          "Home screen showing featured furniture, categories, and quick product discovery.",
+          "Favorites screen where saved furniture items are collected for later review.",
+          "Profile screen for customer account details and personal shopping information.",
+          "Search screen for finding furniture products quickly by name or category.",
+          "Product details screen with imagery, pricing, description, and purchase actions.",
+          "Rating modal for reviewing a selected furniture product from inside the product flow.",
+          "Expanded product details view showing a richer look at the selected item.",
+          "Cart screen listing selected products before checkout.",
+          "Cart summary screen that brings totals and final order details together."
+        ]
+      },
+      "inkwell-blog": {
+        title: "Inkwell Blog System",
+        kicker: "Laravel Blog Platform",
+        subtitle: "Blog publishing and auth flows",
+        summary: "",
+        cover: "assets/local-project/cover.png",
+        video: "assets/local-project/inkwell-demo.webm",
+        copy: "Inkwell is a Laravel and Blade blog system with publishing, authentication, responsive layouts, and a clean content flow.",
+        tags: ["Laravel", "Blade", "MySQL", "Authentication", "Responsive UI"],
+        stats: [
+          { value: "11", label: "Screenshots" },
+          { value: "2026", label: "Local project" }
+        ],
+        screenshots: [
+          "assets/local-project/img/inkwell-create-account-screen.png",
+          "assets/local-project/img/inkwell-posts-feed-screen.png",
+          "assets/local-project/img/inkwell-profile-edit-screen.png",
+          "assets/local-project/img/inkwell-followers-list-screen.png",
+          "assets/local-project/img/inkwell-following-list-screen.png",
+          "assets/local-project/img/inkwell-profile-overview-screen.png",
+          "assets/local-project/img/inkwell-following-list-extended-screen.png",
+          "assets/local-project/img/inkwell-new-post-screen.png",
+          "assets/local-project/img/inkwell-edit-post-screen.png",
+          "assets/local-project/img/inkwell-following-list-alt-screen.png",
+          "assets/local-project/img/inkwell-post-detail-screen.png"
+        ],
+        screenDescriptions: [
+          "Create account screen for registering a new Inkwell user.",
+          "Posts feed screen showing published content in the main reading flow.",
+          "Profile edit screen for updating personal account information.",
+          "Followers list screen showing users who follow the current profile.",
+          "Following list screen showing accounts the user has chosen to follow.",
+          "Profile overview screen with user details, activity, and published content.",
+          "Extended following list view for browsing more connected accounts.",
+          "New post screen for composing and publishing fresh blog content.",
+          "Edit post screen for updating existing published content.",
+          "Alternate following list state showing another connected-user view.",
+          "Post detail screen focused on reading a single blog post."
+        ]
+      }
+    };
+
+    const projectOrder = ["doctor-now", "nexus-app", "inkwell-blog"];
+    const params = new URLSearchParams(window.location.search);
+    const slug = projects[params.get("project")] ? params.get("project") : "doctor-now";
+    const project = projects[slug];
+    const spotlight = document.querySelector(".spotlight");
+    const revealItems = document.querySelectorAll(".reveal");
+    const navLinks = document.querySelectorAll(".nav-links a");
+    const gallery = document.getElementById("projectGallery");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    const closeLightbox = document.querySelector(".lightbox-close");
+
+    document.title = `Amr Mostafa | ${project.title}`;
+    document.getElementById("projectTitle").textContent = project.title;
+    document.getElementById("projectCopy").textContent = project.copy;
+    document.getElementById("projectKicker").textContent = project.kicker;
+    document.getElementById("projectSubtitle").textContent = project.subtitle;
+    document.getElementById("projectSummary").textContent = project.summary;
+
+    const projectCover = document.getElementById("projectCover");
+    const projectVideoSection = document.getElementById("demo");
+    const projectVideo = document.getElementById("projectVideo");
+    projectCover.src = project.cover;
+    projectCover.alt = `${project.title} cover`;
+
+    if (project.video) {
+      projectVideo.src = project.video;
+      projectVideo.poster = project.cover;
+      projectVideo.addEventListener("loadedmetadata", () => {
+        if (projectVideo.videoWidth && projectVideo.videoHeight) {
+          projectVideo.style.setProperty("--video-ratio", `${projectVideo.videoWidth} / ${projectVideo.videoHeight}`);
+        }
+      }, { once: true });
+    } else {
+      projectVideoSection.hidden = true;
+      projectVideo.removeAttribute("src");
+    }
+
+    document.getElementById("projectTags").innerHTML = project.tags.map((tag) => `<span class="pill">${tag}</span>`).join("");
+    document.getElementById("projectStats").innerHTML = project.stats.map((stat) => `
+      <div class="project-card-stat">
+        <strong>${stat.value}</strong>
+        <span>${stat.label}</span>
+      </div>
+    `).join("");
+
+    document.getElementById("projectSwitcher").innerHTML = projectOrder.map((item) => {
+      const active = item === slug ? "btn-primary" : "btn-ghost";
+      return `<a class="btn ${active}" href="project.html?project=${item}">${projects[item].title}</a>`;
+    }).join("");
+
+    const createCaption = (index) => `${project.title} screenshot ${String(index + 1).padStart(2, "0")}`;
+    const createDescription = (index) => project.screenDescriptions?.[index] || createCaption(index);
+    const usesScreenshotPreview = ["doctor-now", "nexus-app", "inkwell-blog"].includes(slug);
+
+    const createScreenshotCard = (src, index) => {
+      const caption = createCaption(index);
+      return `
+        <figure class="shot-card reveal" style="--delay: ${index * 65}ms" data-src="${src}" data-caption="${project.title} screenshot ${String(index + 1).padStart(2, "0")}">
+          <img src="${src}" alt="${caption}" loading="lazy" />
+          <figcaption>Screenshot ${String(index + 1).padStart(2, "0")}</figcaption>
+        </figure>
+      `;
+    };
+
+    const createScreenshotPreview = () => `
+      <article class="screenshot-preview reveal" id="screenshotPreview" style="--delay: 120ms">
+        <button class="screenshot-stage" type="button" id="screenshotStage" data-src="${project.screenshots[0]}" data-caption="${createCaption(0)}" aria-label="Open selected screenshot">
+          <img class="screenshot-stage-image" id="screenshotStageImage" src="${project.screenshots[0]}" alt="${createCaption(0)}" />
+        </button>
+        <div class="screenshot-preview-meta">
+          <span class="overview-kicker">Selected screen</span>
+          <h3 class="overview-title" id="screenshotPreviewTitle">Screenshot 01</h3>
+          <p class="overview-copy" id="screenshotPreviewDescription">${createDescription(0)}</p>
+        </div>
+        <div class="screenshot-rail" role="list" aria-label="${project.title} screenshots">
+          ${project.screenshots.map((src, index) => `
+            <button class="screenshot-thumb ${index === 0 ? "is-active" : ""}" type="button" role="listitem" data-src="${src}" data-caption="${createCaption(index)}" data-index="${index}">
+              <img src="${src}" alt="${createCaption(index)} thumbnail" loading="lazy" />
+              <span>${String(index + 1).padStart(2, "0")}</span>
+            </button>
+          `).join("")}
+        </div>
+      </article>
+    `;
+
+    gallery.classList.toggle("project-gallery--preview", usesScreenshotPreview);
+    gallery.innerHTML = usesScreenshotPreview
+      ? createScreenshotPreview()
+      : project.screenshots.map(createScreenshotCard).join("");
+
+    gallery.querySelectorAll(".shot-card").forEach((card) => {
+      const image = card.querySelector("img");
+      const syncAspect = () => {
+        if (image.naturalWidth && image.naturalHeight) {
+          card.style.setProperty("--ratio", `${image.naturalWidth} / ${image.naturalHeight}`);
+        }
+      };
+
+      if (image.complete) {
+        syncAspect();
+      } else {
+        image.addEventListener("load", syncAspect, { once: true });
+      }
+    });
+
+    const screenshotPreview = document.getElementById("screenshotPreview");
+    if (screenshotPreview) {
+      const stage = document.getElementById("screenshotStage");
+      const stageImage = document.getElementById("screenshotStageImage");
+      const stageTitle = document.getElementById("screenshotPreviewTitle");
+      const stageDescription = document.getElementById("screenshotPreviewDescription");
+      const rail = screenshotPreview.querySelector(".screenshot-rail");
+      const thumbs = [...screenshotPreview.querySelectorAll(".screenshot-thumb")];
+      let selectedIndex = 0;
+
+      const selectScreenshot = (index, shouldScroll = true) => {
+        selectedIndex = index;
+        const thumb = thumbs[selectedIndex];
+        stage.dataset.src = thumb.dataset.src;
+        stage.dataset.caption = thumb.dataset.caption;
+        stageImage.classList.remove("is-changing");
+        void stageImage.offsetWidth;
+        stageImage.classList.add("is-changing");
+        stageImage.src = thumb.dataset.src;
+        stageImage.alt = thumb.dataset.caption;
+        stageTitle.textContent = `Screenshot ${String(selectedIndex + 1).padStart(2, "0")}`;
+        stageDescription.textContent = createDescription(selectedIndex);
+        thumbs.forEach((item) => item.classList.toggle("is-active", item === thumb));
+
+        if (shouldScroll) {
+          const targetLeft = thumb.offsetLeft - (rail.clientWidth - thumb.clientWidth) / 2;
+          rail.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+        }
+      };
+
+      thumbs.forEach((thumb, index) => {
+        thumb.addEventListener("click", () => {
+          selectScreenshot(index);
+        });
+      });
+
+      stage.addEventListener("click", () => {
+        openLightbox(stage.dataset.src, stage.dataset.caption);
+      });
+
+      if (thumbs.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        let autoScroll = window.setInterval(() => {
+          selectScreenshot((selectedIndex + 1) % thumbs.length);
+        }, 2000);
+
+        rail.addEventListener("pointerenter", () => window.clearInterval(autoScroll));
+        rail.addEventListener("pointerleave", () => {
+          autoScroll = window.setInterval(() => {
+            selectScreenshot((selectedIndex + 1) % thumbs.length);
+          }, 2000);
+        });
+      }
+    }
+
+    window.addEventListener("pointermove", (event) => {
+      spotlight.style.setProperty("--x", `${event.clientX}px`);
+      spotlight.style.setProperty("--y", `${event.clientY}px`);
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => {
+          const href = link.getAttribute("href");
+          link.classList.toggle("is-active", href === `#${entry.target.id}`);
+        });
+      });
+    }, { rootMargin: "-42% 0px -50% 0px" });
+
+    document.querySelectorAll("main section[id]").forEach((section) => navObserver.observe(section));
+
+    const openLightbox = (src, caption) => {
+      lightboxImage.src = src;
+      lightboxImage.alt = caption;
+      lightboxCaption.textContent = caption;
+      if (typeof lightbox.showModal === "function") {
+        lightbox.showModal();
+      }
+    };
+
+    gallery.querySelectorAll(".shot-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        openLightbox(card.dataset.src, card.dataset.caption);
+      });
+    });
+
+    closeLightbox.addEventListener("click", () => lightbox.close());
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        lightbox.close();
+      }
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.open) {
+        lightbox.close();
+      }
+    });
+  </script>
+</body>
+
+</html>
